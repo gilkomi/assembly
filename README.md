@@ -23,19 +23,13 @@ The Two-Pass Compilation phase is divided into two stages, as the name suggests:
 
 
 ## Directory Structure (Modules)
-am_builder - 
-<br>
-coded_list - 
-<br>
-first_pass - 
-<br>
-laxer - 
-<br>
-parser - 
-<br>
-second_pass - 
-<br>
-symbol_table - 
-<br>
-utils - 
-<br>
+* `am_builder` - Converts `.as` files to `.am` format. Functions as a macro interpreter and removes comment lines. <br>
+* `coded_list` - Consists of 12-bit code structs and their related functions. <br>
+* `first_pass` - Implements the first phase of the Two-Pass Compilation technique. <br>
+* `second_pass` - Implements the second phase of the Two-Pass Compilation technique. <br>
+* `lexer.h` - Contains the definition of the Abstract Syntax Tree for a line in a source code. <br>
+* `lexer` - Implements the lexer functionality of the assembler. <br>
+* `parser` - Contains functions related to verifying if a command line is logically correct. <br>
+* `symbol_table.h` - Contains the definitions for the symbols table. <br>
+* `symbol_table` - Implements the functionalities of the symbols table. <br>
+* `utils` - Provides functions for general use throughout the entire project. <br>
