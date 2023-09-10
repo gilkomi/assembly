@@ -19,7 +19,32 @@ The Two-Pass Compilation phase is divided into two stages, as the name suggests:
 * The **first-pass** phase receives the command line and uses the AST to convert it into the correct struct. Furthermore, this phase uses a symbols table to store information about each symbol that appears in the code. The table retains the name of the symbol, type of the symbol (declaration, use, external use), and the line number. At the end of this phase, we have a complete symbols table and a list containing all the 12-bit coded lines from the code, except for the symbols. Instead of getting the appropriate code for the symbol, there's a placeholder with the symbol's name.
 * The **second-pass** phase uses the coded list and the symbols table. It re-reads the coded list, and wherever there's a placeholder, it scans the symbols table to rewrite the line with the correct 12-bit code.
   
+## Installation & Usage
+To execute the program, follow these instructions:
 
+### Installation:
+1. Clone the repository or download the source code.
+2. Navigate to the project directory.
+3. Compile the assembler using the provided makefile:
+`make`
+
+### Usage:
+Run the assembler with the following command:  
+`./assembler filename1 filename2 ... ` <br>
+Replace filename with the path to an .as file. You can provide multiple input files, and the assembler will process them in the order you specify. <br>
+
+#### Output Files:
+Upon successful execution with valid `.as` files, the assembler generates the following output files:
+
+1. `filename.am`: This file contains the original code from the source file, but with macros expanded. Comments (lines starting with `;`), macro definitions, and empty lines are excluded from this file.
+
+2. `filename.ent`: Lists all labels defined as `entry`. Next to each label, its declaration index is provided. This file is only generated if there are any `entry` labels in the source.
+
+3. `filename.ext`: Contains all the indices where an `extern` label is used in the source code. For each label, the file lists the index of the line where the label was used. This file is only created if there are any `extern` labels used in the source.
+
+4. `filename.obj`: Represents the encoded version of the source code according to the compiler's rules, displayed in base-16.
+
+Note: The `.ent` and `.ext` files are only generated when there are relevant labels in the source code. If no labels of a specific type (`entry` or `extern`) are present in the source, the corresponding file won't be created.
 
 
 ## Directory Structure (Modules)
